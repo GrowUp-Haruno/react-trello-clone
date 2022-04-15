@@ -1,10 +1,12 @@
-import React from 'react';
+// ダークモードなどを有効にしたい場合はColorModeScriptを有効にする
+// import { ColorModeScript } from '@chakra-ui/react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { App } from './App';
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* <ColorModeScript /> */}
     <App />
   </React.StrictMode>,
   document.getElementById('root')

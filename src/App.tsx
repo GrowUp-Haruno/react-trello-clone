@@ -1,11 +1,13 @@
-import './App.css';
+import { ChakraProvider, VStack, theme } from '@chakra-ui/react';
+import { Header } from './components/Header';
 
-function App() {
+export function App() {
   return (
-    <div className="App">
-
-    </div>
+    <ChakraProvider theme={theme}>
+      <VStack spacing={0} align='stretch'>
+        <Header />
+        {/* <DashBoard> */}
+      </VStack>
+    </ChakraProvider>
   );
 }
-
-export default App;
