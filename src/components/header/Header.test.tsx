@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Header } from './Header';
+import { viewTest } from '../../../jset/viewTest';
 
 describe('Headerコンポーネント', () => {
-  it('タイトル「Trello Clone」を表示', () => {
+  it('仮テスト', () => {
     render(<Header />);
-    const testTarget = screen.getByRole('heading');
-    expect(testTarget).toHaveTextContent('Trello Clone');
+    viewTest({ roleMaatch: 'heading', textMatch: 'Trello Clone' });
   });
 });
