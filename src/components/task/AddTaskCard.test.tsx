@@ -1,14 +1,11 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
+import { AddTaskCard } from './AddTaskCard';
 import { viewTest } from '../../../jset/viewTest';
-import { Dashboard } from './Dashboard';
 
-describe('Dashboardコンポーネント', () => {
+describe('AddTaskCardコンポーネント', () => {
   it('仮テスト', () => {
-    render(<Dashboard />);
-    viewTest({ textMatch: 'Dashboard' });
-    viewTest({ textMatch: 'TaskCard' });
+    render(<AddTaskCard />);
     viewTest({ textMatch: 'AddTaskCard' });
   });
 });

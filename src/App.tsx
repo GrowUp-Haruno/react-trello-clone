@@ -1,5 +1,6 @@
 import { ChakraProvider, VStack, theme } from '@chakra-ui/react';
 import { Dashboard } from './components/dashboard/Dashboard';
+
 import { Header } from './components/header/Header';
 
 export function App() {
