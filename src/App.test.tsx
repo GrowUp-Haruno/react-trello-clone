@@ -7,8 +7,6 @@ describe('Appコンポーネント', () => {
   it('各種コンポーネントの表示', () => {
     render(<App />);
     viewTest({ roleMaatch: 'heading', textMatch: 'Trello Clone' });
-    viewTest({ textMatch: 'Dashboard' });
-    viewTest({ textMatch: 'TaskCard' });
     viewTest({ textMatch: 'AddTaskCard' });
   });
 });
