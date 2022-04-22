@@ -5,18 +5,18 @@ import { TaskCardDeleteButton } from './TaskCardDeleteButton';
 import { TaskCardTitle } from './TaskCardTitle';
 import { TaskListTaskList } from './TaskListTaskList';
 
-export const TaskCard:FC = ({ children }) => {
+export const TaskCard: FC = ({ children }) => {
+
   return (
-    <Box h="100%">
+    <Box h="100%" w='215px'>
       <Stack
         spacing={4}
+        // maxW={'270px'}
         w={'full'}
-        maxW={'md'}
         bg={useColorModeValue('white', 'gray.700')}
         rounded={'xl'}
         boxShadow={'lg'}
         p={6}
-        my={12}
       >
         <TaskCardTitle />
         <TaskAddInput />
