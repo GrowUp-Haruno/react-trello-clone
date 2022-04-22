@@ -1,14 +1,15 @@
 import { Box, Stack, useColorModeValue } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { TaskAddInput } from './TaskAddInput';
 import { TaskCardDeleteButton } from './TaskCardDeleteButton';
 import { TaskCardTitle } from './TaskCardTitle';
 import { TaskListTaskList } from './TaskListTaskList';
 
 export const TaskCard: FC = ({ children }) => {
+  const [taskList, setTaskList] = useState<string[]>([]);
 
   return (
-    <Box h="100%" w='215px'>
+    <Box h="100%" w="250px">
       <Stack
         spacing={4}
         // maxW={'270px'}
@@ -19,7 +20,7 @@ export const TaskCard: FC = ({ children }) => {
         p={6}
       >
         <TaskCardTitle />
-        <TaskAddInput />
+        <TaskAddInput setTaskList={setTaskList} />
         <TaskListTaskList />
         <TaskCardDeleteButton />
       </Stack>
