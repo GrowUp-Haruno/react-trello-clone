@@ -6,7 +6,8 @@ import { viewTest } from '../jset/viewTest';
 describe('Appコンポーネント', () => {
   it('各種コンポーネントの表示', () => {
     render(<App />);
-    viewTest({ roleMaatch: 'heading', textMatch: 'Trello Clone' });
+    viewTest({ textMatch: 'Trello Clone' });
+    viewTest({ textMatch: 'Today' });
     viewTest({ textMatch: 'AddTaskCard' });
   });
 });
