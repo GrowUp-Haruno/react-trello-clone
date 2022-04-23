@@ -7,6 +7,8 @@ export const Dashboard = () => {
     <HStack
       bgImage="url('mountain.jpeg')"
       style={{ height: 'calc(100vh - 40px)', backgroundSize: 'cover' }}
+      p={4}
+      spacing={6}
     >
       <TaskCard></TaskCard>
       <AddTaskCard></AddTaskCard>
