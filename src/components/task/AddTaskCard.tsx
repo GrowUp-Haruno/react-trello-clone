@@ -1,7 +1,9 @@
-import React from 'react'
+import { Box } from '@chakra-ui/react';
 
 export const AddTaskCard = () => {
   return (
-    <div>AddTaskCard</div>
-  )
-}
+    <Box width={215} height="100%">
+      AddTaskCard
+    </Box>
+  );
+};
