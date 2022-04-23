@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { TaskListTaskList } from './TaskListTaskList';
+import { TaskList } from './TaskList';
 import { viewTest } from '../../../jset/viewTest';
 
-describe('TaskListTaskListコンポーネント', () => {
+describe('TaskListコンポーネント', () => {
   it('仮テスト', () => {
-    render(<TaskListTaskList />);
-    viewTest({ textMatch: 'TaskListTaskList' });
+    render(<TaskList />);
+    viewTest({ textMatch: 'TaskList' });
     console.warn('これは仮テストです');
   });
 });

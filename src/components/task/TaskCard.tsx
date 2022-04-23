@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import { TaskAddInput } from './TaskAddInput';
 import { TaskCardDeleteButton } from './TaskCardDeleteButton';
 import { TaskCardTitle } from './TaskCardTitle';
-import { TaskListTaskList } from './TaskListTaskList';
+import { TaskList } from './TaskList';
 
 export const TaskCard: FC = ({ children }) => {
   const [taskList, setTaskList] = useState<string[]>([]);
@@ -21,7 +21,7 @@ export const TaskCard: FC = ({ children }) => {
       >
         <TaskCardTitle />
         <TaskAddInput setTaskList={setTaskList} />
-        <TaskListTaskList />
+        <TaskList />
         <TaskCardDeleteButton />
       </Stack>
     </Box>
