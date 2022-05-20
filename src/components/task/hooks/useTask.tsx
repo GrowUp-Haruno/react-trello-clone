@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const useTask = (setTaskList: React.Dispatch<React.SetStateAction<string[]>>, index: number) => {
     const [isEdit, setIsEdit] = useState<boolean>(false);
 
-    const Click = () => {
+    const changeEdit = () => {
         setIsEdit(true);
     };
 
@@ -27,7 +27,9 @@ export const useTask = (setTaskList: React.Dispatch<React.SetStateAction<string[
     const Delete = () => {
         setTaskList((prevList) => prevList.filter((_, prevIndex) => prevIndex !== index));
     };
+
     const state = { isEdit };
-    const handle = { Click, Change, Blur, Submit, Delete };
+    const handle = { changeEdit, Change, Blur, Submit, Delete };
+
     return { state, handle };
 };

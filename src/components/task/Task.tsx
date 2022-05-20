@@ -15,7 +15,7 @@ export const Task: FC<{
         <HStack h="3rem" pr={!state.isEdit ? 3 : 0}>
             {!state.isEdit ? (
                 <>
-                    <Text onClick={handle.Click} flex="1" px={4}>
+                    <Text onClick={handle.changeEdit} flex="1" px={4}>
                         {taskText}
                     </Text>
                     <Button w="3rem" h="1.75rem" size="sm" onClick={handle.Delete}>
@@ -34,7 +34,7 @@ export const Task: FC<{
                         autoFocus
                     />
                     <InputRightElement width="4.5rem">
-                        <Button w="3rem" h="1.75rem" size="sm" onClick={handle.Click}>
+                        <Button w="3rem" h="1.75rem" size="sm" >
                             更新
                         </Button>
                     </InputRightElement>
