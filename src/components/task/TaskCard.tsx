@@ -5,11 +5,11 @@ import { TaskCardDeleteButton } from './TaskCardDeleteButton';
 import { TaskCardTitle } from './TaskCardTitle';
 import { TaskList } from './TaskList';
 
-export const TaskCard: FC = ({ children }) => {
+export const TaskCard: FC = () => {
   const [taskList, setTaskList] = useState<string[]>([]);
-
+  console.log(taskList)
   return (
-    <Box h="100%" w="250px">
+    <Box h="100%" w="300px">
       <Stack
         spacing={4}
         // maxW={'270px'}
@@ -21,7 +21,7 @@ export const TaskCard: FC = ({ children }) => {
       >
         <TaskCardTitle />
         <TaskAddInput setTaskList={setTaskList} />
-        <TaskList />
+        <TaskList taskList={taskList} setTaskList={setTaskList} />
         <TaskCardDeleteButton />
       </Stack>
     </Box>

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { TaskCard } from './TaskCard';
+import { TaskCard } from '../TaskCard';
 import userEvent from '@testing-library/user-event';
 
 describe('TaskAddInputコンポーネント', () => {
@@ -22,7 +22,7 @@ describe('TaskAddInputコンポーネント', () => {
     // DOM取得
     const outer = screen.getByTestId('outer');
     const input = screen.getByPlaceholderText('add a task');
-    const button = screen.getByText('Add');
+    const button = screen.getByText('追加');
 
     // inputをクリックするとフォーカスされる
     userEvent.click(input);
@@ -45,8 +45,3 @@ describe('TaskAddInputコンポーネント', () => {
     expect(input).toHaveValue('');
   });
 });
-
-// 入力ステート(管理場所はTaskCardコンポーネント)で入力内容を管理
-// Enterキーを押下 or フォーカスが外れると
-// タスク一覧ステート(管理場所はTaskCardコンポーネント)に追加する
-// 入力ステートを空にする
