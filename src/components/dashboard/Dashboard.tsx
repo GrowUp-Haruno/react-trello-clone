@@ -10,7 +10,7 @@ export const Dashboard = () => {
       p={4}
       spacing={6}
     >
-      <TaskCard></TaskCard>
+      <TaskCard />
       <AddTaskCard></AddTaskCard>
     </HStack>
   );

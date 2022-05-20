@@ -10,7 +10,8 @@ export const TaskAddInput: FC<{
 }> = ({ setTaskList }) => {
   const {
     states: { taskAddValue },
-    handlers: { handleChange, handleClick, handleSubmit },
+    refs: { inputRef },
+    handlers: { handleChange, handleClick, handleSubmit, handleFocus },
   } = useTaskAddInput(setTaskList);
 
   return (
@@ -25,10 +26,11 @@ export const TaskAddInput: FC<{
             maxLength={inputMaxLength}
             onChange={handleChange}
             width="100%"
+            ref={inputRef}
           />
           <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              Add
+            <Button h="1.75rem" size="sm" onClick={handleClick} onFocus={handleFocus}>
+              追加
             </Button>
           </InputRightElement>
         </InputGroup>

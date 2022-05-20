@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { TaskCardTitle } from './TaskCardTitle';
-import { viewTest } from '../../../jset/viewTest';
+import { TaskCardTitle } from '../TaskCardTitle';
+import { viewTest } from '../../../../jset/viewTest';
 import userEvent from '@testing-library/user-event';
 
 describe('TaskCardTitleコンポーネント', () => {
