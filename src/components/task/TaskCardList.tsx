@@ -16,7 +16,7 @@ export const TaskCardList: FC = () => {
     <>
       {taskCardList &&
         taskCardList.map((taskCard, index) => (
-          <Box h="100%" w="300px" key={index}>
+          <Box h="100%" w="300px" key={`${index}-${taskCard.taskTitle}`}>
             <Stack spacing={4} w={'full'} bg={bgColor} rounded={'xl'} boxShadow={'lg'} p={6}>
               <TaskCardTitle taskCard={taskCard} />
               <TaskAddInput taskCard={taskCard} />

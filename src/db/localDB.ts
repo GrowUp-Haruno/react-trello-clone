@@ -35,12 +35,12 @@ export const clearDatabase = () => {
 };
 
 /**
- * taskCardListテーブルを空にする
+ * taskCardListテーブルの特定idのデータを削除する
  */
-export const clearTaskCardList = () => {
+export const cleareTaskList = (taskCard: TaskCardType) => {
   localDB.transaction('rw', localDB.taskCardList, async () => {
-    await localDB.taskCardList.clear();
-    window.location.reload();
+    if (!taskCard.cardId) return;
+    await localDB.taskCardList.where('cardId').equals(taskCard.cardId).delete()
   });
 };
 
@@ -62,4 +62,12 @@ export const initialDatabase = async () => {
   }
 };
 
-export const putTaskCard = (taskCard: TaskCardType) => localDB.taskCardList.put(taskCard);
+export const putTaskCard = async (taskCard: TaskCardType) => {
+  try {
+    await localDB.transaction('rw', localDB.taskCardList, async () => {
+      await localDB.taskCardList.put(taskCard);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
