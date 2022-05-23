@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { putTaskCard } from '../../../db/localDB';
+import { TaskCardType } from '../../../models/TaskCardList';
 
-export const useTaskCardTitle: () => {
+export const useTaskCardTitle: (taskCard: TaskCardType) => {
   states: {
     isEdit: boolean;
     cardTitleValue: string;
@@ -11,9 +13,13 @@ export const useTaskCardTitle: () => {
     handleBlur: () => void;
     handleSubmit: React.FormEventHandler<HTMLFormElement>;
   };
-} = () => {
+} = (taskCard) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [cardTitleValue, setCardTitleValue] = useState<string>('');
+
+  useEffect(() => {
+    setCardTitleValue(taskCard.taskTitle);
+  }, [taskCard.taskTitle]);
 
   const handleClick = () => {
     setIsEdit(true);
@@ -23,12 +29,14 @@ export const useTaskCardTitle: () => {
     setCardTitleValue(event.target.value);
   };
 
-  const handleBlur = () => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
     setIsEdit(false);
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
+  // フォーカスが外れたタイミングでDBを処理する
+  const handleBlur = () => {
+    putTaskCard({ ...taskCard, taskTitle: cardTitleValue });
     setIsEdit(false);
   };
 

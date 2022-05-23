@@ -1,33 +1,48 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { putTaskCard } from '../../../db/localDB';
+import { TaskCardType } from '../../../models/TaskCardList';
 
-export const useTaskAddInput: (setTaskList: React.Dispatch<React.SetStateAction<string[]>>) => {
-  states: {
+export const useTaskAddInput: (taskCard: TaskCardType) => {
+  state: {
     taskAddValue: string;
   };
-  handlers: {
-    handleClick: () => void;
-    handleChange: React.ChangeEventHandler<HTMLInputElement>;
-    handleSubmit: React.FormEventHandler<HTMLFormElement>;
+  ref: {
+    inputRef: React.RefObject<HTMLInputElement>;
   };
-} = (setTaskList) => {
+  handle: {
+    Click: () => void;
+    Change: React.ChangeEventHandler<HTMLInputElement>;
+    Submit: React.FormEventHandler<HTMLFormElement>;
+    Focus: () => void;
+  };
+} = (taskCard) => {
   const [taskAddValue, setTaskAddValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+  const Change: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setTaskAddValue(event.target.value);
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const Submit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    setTaskList((prev) => [...prev, taskAddValue]);
+    if (taskAddValue === '') return;
+    putTaskCard({ ...taskCard, taskList: [...taskCard.taskList, taskAddValue] });
     setTaskAddValue('');
   };
 
-  const handleClick = () => {
-    setTaskList((prev) => [...prev, taskAddValue]);
+  const Click = () => {
+    if (taskAddValue === '') return;
+    putTaskCard({ ...taskCard, taskList: [...taskCard.taskList, taskAddValue] });
     setTaskAddValue('');
+    if (inputRef.current) inputRef.current.focus();
   };
 
-  const states = { taskAddValue };
-  const handlers = { handleClick, handleChange, handleSubmit };
-  return { states, handlers };
+  const Focus = () => {
+    inputRef.current?.focus();
+  };
+
+  const state = { taskAddValue };
+  const ref = { inputRef };
+  const handle = { Click, Change, Submit, Focus };
+  return { state, ref, handle };
 };

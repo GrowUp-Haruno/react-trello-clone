@@ -1,18 +1,19 @@
 import { Box, Heading, Input } from '@chakra-ui/react';
 import { FC } from 'react';
+import { TaskCardType } from '../../models/TaskCardList';
 import { useTaskCardTitle } from './hooks/useTaskCardTitle';
 
 const defaultTitle = 'Today';
 const inputMaxLength = 10;
 
-export const TaskCardTitle: FC = () => {
+export const TaskCardTitle: FC<{ taskCard: TaskCardType }> = ({ taskCard }) => {
   const {
     states: { isEdit, cardTitleValue },
     handlers: { handleBlur, handleChange, handleClick, handleSubmit },
-  } = useTaskCardTitle();
+  } = useTaskCardTitle(taskCard);
 
   return (
-    <Box >
+    <Box>
       {!isEdit ? (
         <Heading as="h3" onClick={handleClick}>
           {cardTitleValue || defaultTitle}

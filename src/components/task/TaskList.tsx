@@ -1,28 +1,14 @@
-import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { VStack } from '@chakra-ui/react';
+import { FC } from 'react';
+import { TaskCardType } from '../../models/TaskCardList';
+import { Task } from './Task';
 
-export const TaskList = () => {
-  const [isEdit, setIsEdit] = useState(false)
+export const TaskList: FC<{ taskCard: TaskCardType }> = ({ taskCard }) => {
   return (
-    <Box>
-      {!isEdit ? (
-        <Heading as="h3" onClick={handleClick}>
-          {cardTitleValue || defaultTitle}
-        </Heading>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <Input
-            placeholder={defaultTitle}
-            value={cardTitleValue}
-            type="text"
-            maxLength={inputMaxLength}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            width="100%"
-            autoFocus
-          />
-        </form>
-      )}
-    </Box>
+    <VStack spacing={2} align="stretch">
+      {taskCard.taskList.map((taskText, index) => (
+        <Task taskText={taskText} index={index} taskCard={taskCard} key={`${index}-${taskText}`} />
+      ))}
+    </VStack>
   );
-}
+};
