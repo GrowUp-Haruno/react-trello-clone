@@ -1,15 +1,13 @@
-import {  VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 import { FC } from 'react';
+import { TaskCardType } from '../../models/TaskCardList';
 import { Task } from './Task';
 
-export const TaskList: FC<{
-  taskList: string[];
-  setTaskList: React.Dispatch<React.SetStateAction<string[]>>;
-}> = ({ taskList, setTaskList }) => {
+export const TaskList: FC<{ taskCard: TaskCardType }> = ({ taskCard }) => {
   return (
     <VStack spacing={2} align="stretch">
-      {taskList.map((taskText, index) => (
-        <Task taskText={taskText} setTaskList={setTaskList} index={index} key={index} />
+      {taskCard.taskList.map((taskText, index) => (
+        <Task taskText={taskText} index={index} taskCard={taskCard} key={`${index}-${taskText}`} />
       ))}
     </VStack>
   );

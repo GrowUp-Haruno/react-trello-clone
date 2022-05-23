@@ -1,35 +1,41 @@
 import { useState } from 'react';
+import { putTaskCard } from '../../../db/localDB';
+import { TaskCardType } from '../../../models/TaskCardList';
 
-export const useTask = (setTaskList: React.Dispatch<React.SetStateAction<string[]>>, index: number) => {
-    const [isEdit, setIsEdit] = useState<boolean>(false);
+export const useTask = (taskText: string, index: number, taskCard: TaskCardType) => {
+  const [inputValue, setInputValue] = useState(taskText);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
 
-    const changeEdit = () => {
-        setIsEdit(true);
-    };
+  const changeEdit = () => {
+    setIsEdit(true);
+  };
 
-    const Change: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-        setTaskList((prevList) =>
-            prevList.map((prev, prevIndex) => (prevIndex === index ? event.target.value : prev))
-        );
-    };
+  const Change: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setInputValue(event.target.value);
+  };
 
-    const Blur = () => {
-        setIsEdit(false);
-        setTaskList((prevList) => prevList.filter(Boolean));
-    };
+  const Blur: React.FocusEventHandler<HTMLInputElement> = (event) => {
+    setIsEdit(false);
+    if (inputValue !== '') taskCard.taskList.splice(index, 1, inputValue);
+    if (inputValue === '') taskCard.taskList.splice(index, 1).filter(Boolean);
+    putTaskCard({ ...taskCard, taskList: taskCard.taskList });
+  };
 
-    const Submit: React.FormEventHandler<HTMLDivElement> = (event) => {
-        event.preventDefault();
-        setIsEdit(false);
-        setTaskList((prevList) => prevList.filter(Boolean));
-    };
+  const Submit: React.FormEventHandler<HTMLDivElement> = (event) => {
+    event.preventDefault();
+    setIsEdit(false);
+    if (inputValue !== '') taskCard.taskList.splice(index, 1, inputValue);
+    if (inputValue === '') taskCard.taskList.splice(index, 1).filter(Boolean);
+    putTaskCard({ ...taskCard, taskList: taskCard.taskList });
+  };
 
-    const Delete = () => {
-        setTaskList((prevList) => prevList.filter((_, prevIndex) => prevIndex !== index));
-    };
+  const Delete = () => {
+    taskCard.taskList.splice(index, 1).filter(Boolean);
+    putTaskCard({ ...taskCard, taskList: taskCard.taskList });
+  };
 
-    const state = { isEdit };
-    const handle = { changeEdit, Change, Blur, Submit, Delete };
+  const state = { isEdit, inputValue };
+  const handle = { changeEdit, Change, Blur, Submit, Delete };
 
-    return { state, handle };
+  return { state, handle };
 };
