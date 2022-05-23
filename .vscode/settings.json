@@ -1,4 +1,4 @@
 {
-  "githubIssues.issueBranchTitle": "${user}/issue2->4->5->${issueNumber}",
+  "githubIssues.issueBranchTitle": "${user}/issue2->4->${issueNumber}",
   "prettier.tabWidth": 2
 }
